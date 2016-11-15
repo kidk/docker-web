@@ -23,7 +23,7 @@
 	<h2>Memcached</h2>
 	<?php
 	$memcache = new Memcache;
-	$memcache->connect('localhost', 11211) or die ("Could not connect");
+	$memcache->connect('memservice', 11211) or die ("Could not connect");
 
 	$version = $memcache->getVersion();
 	echo "Server's version: ".$version."<br/>\n";
