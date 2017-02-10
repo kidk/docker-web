@@ -26,15 +26,19 @@
 	$memcache->connect('memservice', 11211) or die ("Could not connect");
 
 	$version = $memcache->getVersion();
-	echo "Server's version: ".$version."<br/>\n";
+	echo "<p>Server's version: ".$version."</p>\n";
 
-	echo "Setting data on memcached";
+	echo "<p>Setting data on memcached</p>\n<ul>\n";
 	for($i = 0; $i < 100; $i++) {
-		$memcache->set(mt_rand(0, 1000), rand(), false, 300) or die ("Failed to save data at the server");
+		$rand_key = mt_rand(0, 10000);
+		$rand_value = rand();
+		echo "<li>Setting key $rand_key</li>\n";
+		$memcache->set($rand_key, $rand_value, false, 300) or die ("Failed to save data at the server");
 	}
+	echo "</ul>\n";
 	
-	$get_result = $memcache->get(mt_rand(0, 1000));
-	echo "Data from the cache:<br/>\n";
+	$get_result = $memcache->get(mt_rand(0, 10000));
+	echo "<p>Data from the cache:<br/></p>\n";
 	var_dump($get_result);
 	?>
 
