@@ -45,3 +45,7 @@
 </body>
 </html>
 
+<?php
+// Random sleep interval to have more realistic latency
+usleep(rand(100000, 500000));
+?>
